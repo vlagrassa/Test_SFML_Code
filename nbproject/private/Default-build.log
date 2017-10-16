@@ -1,0 +1,7 @@
+c++ Pong.cpp $(pkg-config sfml-all --cflags --libs)
+/bin/sh: pkg-config: command not found
+Pong.cpp:5:10: fatal error: 'SFML/Graphics.hpp' file not found
+#include <SFML/Graphics.hpp>
+         ^
+1 error generated.
+make: *** [pongmake] Error 1
