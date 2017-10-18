@@ -1,5 +1,3 @@
-#MAKEFLAGS += --warn-undefined-variables
-
 #CXX = c++
 
 ROOT:=$(dir $(realpath $(lastword $(MAKEFILE_LIST))))
@@ -11,14 +9,11 @@ LDLIBS:=$(shell pkg-config sfml-all --libs)
 
 #SRCS:=$(addprefix $(ROOT),$(wildcard src/*))
 SRCDIR = src/
-SRCS:=$(wildcard $(SRCDIR)/*.c*)
+SRCS:=$(wildcard $(SRCDIR)/*.cpp)
 HDRS:=$(wildcard $(SRCDIR)/*.h)
 
 OBJDIR = obj/
 OBJS = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
-
-#HDRDIR = hdr/
-#HDRS:=$(wildcard $(HDRDIR)/*)
 
 MAIN = main
 
@@ -26,22 +21,17 @@ run: $(MAIN)
 	./$(MAIN)
 
 $(MAIN): $(OBJS)
-	echo $(OBJS)
 	$(CXX) -o $(MAIN) $(OBJS) $(LDLIBS)
-	
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -c $< $(CXXFLAGS) -o $@
-	
 
 $(OBJDIR):
 	mkdir $@
 
-ball.cpp: ball.h
-
 test:
 	echo $(SRCS)
-	echo $(CXXC)
+	echo $(OBJS)
 
 .PHONY: clean
 clean:

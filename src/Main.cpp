@@ -24,11 +24,25 @@ int main() {
     const float pi = 3.14159f;
     const int gameWidth = 800;
     const int gameHeight = 600;
+    
+    // Define objects
     Ball* testBall = new Ball(30,30,0,0,20);
-
+    testBall->setColor(sf::Color::White);
+    
+    
+    sf::CircleShape testCircle;
+    testCircle.setRadius(20);
+    testCircle.setOutlineThickness(3);
+    testCircle.setOutlineColor(sf::Color::Black);
+    testCircle.setFillColor(sf::Color::White);
+    testCircle.setOrigin(30, 30);
+    
+    
     // Create the window of the application
     sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight, 32), "SFML Pong", sf::Style::Titlebar | sf::Style::Close);
     window.setVerticalSyncEnabled(true);
+    //testBall->scale(window.getPosition().x, window.getPosition().y);
+    //testBall->scale(2, 1);
 
     // Load the sounds used in the game
     sf::SoundBuffer ballSoundBuffer;
@@ -85,8 +99,9 @@ int main() {
 
         if (isPlaying) {
             float deltaTime = clock.restart().asSeconds();
-
         }
+        
+        testBall->setPos(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
 
         // Clear the window
         window.clear(sf::Color(100, 200, 100));

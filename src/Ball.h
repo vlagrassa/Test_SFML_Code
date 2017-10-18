@@ -42,6 +42,10 @@ public:
     void setPos(float x, float y);
     void hit(float a, float s);
     
+    void setColor(sf::Color c);
+    void scale(int x, int y);
+    void scale(const sf::Vector2f &factor);
+    
     Ball(float x, float y, float a, float m, float r);
     Ball(const Ball& orig);
     virtual ~Ball();

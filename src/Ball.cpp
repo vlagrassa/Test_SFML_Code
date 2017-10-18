@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 
 void Ball::setX(float n) {
+    //circle.setOrigin(n, circle.)
     circle.setPosition(n, circle.getPosition().y);
 }
 void Ball::setY(float n) {
@@ -21,7 +22,7 @@ void Ball::setSpeed(float n) {
     speed = n;
 }
 void Ball::setRadius(int n) {
-    radius = n;
+    circle.setRadius(n-3);
 }
 
 void Ball::changeX(float n) {
@@ -60,9 +61,24 @@ sf::CircleShape Ball::getCircle() {
     return circle;
 }
 
-Ball::Ball(float x, float y, float a, float m, float r) {
+void Ball::setPos(float x, float y) {
     circle.setPosition(x, y);
-    circle.setRadius(r);
+}
+
+void Ball::scale(int x, int y) {
+    circle.scale(x, y);
+}
+
+void Ball::setColor(sf::Color c) {
+    circle.setFillColor(c);
+}
+
+Ball::Ball(float x, float y, float a, float m, float r) {
+    circle.setOrigin(r, r);
+    circle.setPosition(x, y);
+    circle.setRadius(r-3);
+    circle.setOutlineThickness(3);
+    circle.setOutlineColor(sf::Color::Black);
     setAngle(a);
     setSpeed(m);
     setRadius(r);
