@@ -15,13 +15,15 @@ HDRS:=$(wildcard $(SRCDIR)/*.h)
 OBJDIR = obj/
 OBJS = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
 
+BUILDDIR = build/
+
 MAIN = main
 
 run: $(MAIN)
-	./$(MAIN)
+	./$(BUILDDIR)/$(MAIN)
 
 $(MAIN): $(OBJS)
-	$(CXX) -o $(MAIN) $(OBJS) $(LDLIBS)
+	$(CXX) -o $(BUILDDIR)/$(MAIN) $(OBJS) $(LDLIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) -c $< $(CXXFLAGS) -o $@
