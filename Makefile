@@ -8,11 +8,11 @@ CXXFLAGS:=$(shell pkg-config sfml-all --cflags)
 LDLIBS:=$(shell pkg-config sfml-all --libs)
 
 #SRCS:=$(addprefix $(ROOT),$(wildcard src/*))
-SRCDIR = src/
+SRCDIR = $(ROOT)/src/
 SRCS:=$(wildcard $(SRCDIR)/*.cpp)
 HDRS:=$(wildcard $(SRCDIR)/*.h)
 
-OBJDIR = obj/
+OBJDIR = $(ROOT)/obj/
 OBJS = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.cpp=.o)))
 
 BUILDDIR = build/
